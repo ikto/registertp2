@@ -1,0 +1,4 @@
+ikto_testportal_emu_api:
+    path: /zno_vnz_check.php
+    defaults:
+        _controller: IktoTpEmuApiBundle:Default:index

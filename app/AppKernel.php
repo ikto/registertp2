@@ -16,6 +16,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new IKTO\TestportalEmu\StorageBundle\IktoTpEmuStorageBundle(),
             new IKTO\TestportalEmu\GuiBundle\IktoTpEmuGuiBundle(),
+            new IKTO\TestportalEmu\ApiBundle\IktoTpEmuApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
