@@ -1,3 +1,3 @@
 _ikto_testportal_emu:
-    resource: "@IktoTestportalEmuBundle/Resources/config/routing.yml"
+    resource: "@IktoTpEmuGuiBundle/Resources/config/routing.yml"
     prefix:   /

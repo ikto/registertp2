@@ -1,6 +1,6 @@
 <?php
 
-namespace IKTO\TestportalEmuBundle\Entity;
+namespace IKTO\TestportalEmu\StorageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

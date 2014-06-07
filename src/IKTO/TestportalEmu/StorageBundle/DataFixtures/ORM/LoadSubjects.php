@@ -1,11 +1,11 @@
 <?php
 
-namespace IKTO\TestportalEmuBundle\DataFixtures\ORM;
+namespace IKTO\TestportalEmu\StorageBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use IKTO\TestportalEmuBundle\Entity\Subject;
+use IKTO\TestportalEmu\StorageBundle\Entity\Subject;
 
 class LoadSubjects extends AbstractFixture implements OrderedFixtureInterface
 {

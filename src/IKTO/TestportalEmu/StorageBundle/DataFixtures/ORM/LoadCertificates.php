@@ -1,12 +1,11 @@
 <?php
 
-namespace IKTO\TestportalEmuBundle\DataFixtures\ORM;
+namespace IKTO\TestportalEmu\StorageBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\DataFixtures\Doctrine;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use IKTO\TestportalEmuBundle\Entity\Certificate;
+use IKTO\TestportalEmu\StorageBundle\Entity\Certificate;
 
 class LoadCertificates extends AbstractFixture implements OrderedFixtureInterface
 {

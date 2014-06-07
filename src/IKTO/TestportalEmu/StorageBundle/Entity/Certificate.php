@@ -1,12 +1,13 @@
 <?php
 
-namespace IKTO\TestportalEmuBundle\Entity;
+namespace IKTO\TestportalEmu\StorageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use IKTO\TestportalEmu\StorageBundle\Entity\Subject;
 
 /**
  * Class Certificate
- * @package IKTO\TestportalEmuBundle\Entity
+ * @package IKTO\TestportalEmu\StorageBundle\Entity
  *
  * @ORM\Entity()
  * @ORM\Table(name="data")

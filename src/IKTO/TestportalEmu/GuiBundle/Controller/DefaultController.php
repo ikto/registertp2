@@ -1,6 +1,6 @@
 <?php
 
-namespace IKTO\TestportalEmuBundle\Controller;
+namespace IKTO\TestportalEmu\GuiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -9,7 +9,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('IktoTestportalEmuBundle:Default:index.html.twig');
+        return $this->render('IktoTpEmuGuiBundle:Default:index.html.twig');
     }
 
     public function checkAction(Request $request)
@@ -35,7 +35,7 @@ class DefaultController extends Controller
             $certificateRepository =
                 $this->getDoctrine()
                     ->getManager()
-                    ->getRepository('IktoTestportalEmuBundle:Certificate');
+                    ->getRepository('IktoTpEmuStorageBundle:Certificate');
 
             $certificates = $certificateRepository->findBy(array(
                 'year' => $year,
@@ -45,7 +45,7 @@ class DefaultController extends Controller
 
             if (is_array($certificates) && (count($certificates) == 1)) {
                 return $this->render(
-                    'IktoTestportalEmuBundle:Default:show.html.twig',
+                    'IktoTpEmuGuiBundle:Default:show.html.twig',
                     array(
                         'certificate' => $certificates[0],
                     )
@@ -54,6 +54,6 @@ class DefaultController extends Controller
         }
 
         $variables['not_found'] = true;
-        return $this->render('IktoTestportalEmuBundle:Default:index.html.twig', $variables);
+        return $this->render('IktoTpEmuGuiBundle:Default:index.html.twig', $variables);
     }
 }
