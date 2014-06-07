@@ -32,22 +32,13 @@ class DefaultController extends Controller
         }
 
         if (!isset($variables['number_error']) && !isset($variables['pin_error'])) {
-            $certificateRepository =
-                $this->getDoctrine()
-                    ->getManager()
-                    ->getRepository('IktoTpEmuStorageBundle:Certificate');
+            $certificate = $this->getCertificateByAttributes($year, $number, $pin);
 
-            $certificates = $certificateRepository->findBy(array(
-                'year' => $year,
-                'number' => $number,
-                'pin' => $pin,
-            ));
-
-            if (is_array($certificates) && (count($certificates) == 1)) {
+            if ($certificate) {
                 return $this->render(
                     'IktoTpEmuGuiBundle:Default:show.html.twig',
                     array(
-                        'certificate' => $certificates[0],
+                        'certificate' => $certificate,
                     )
                 );
             }
@@ -55,5 +46,28 @@ class DefaultController extends Controller
 
         $variables['not_found'] = true;
         return $this->render('IktoTpEmuGuiBundle:Default:index.html.twig', $variables);
+    }
+
+    /**
+     * @param $year
+     * @param $number
+     * @param $pin
+     * @return \IKTO\TestportalEmu\StorageBundle\Entity\Certificate
+     */
+    protected function getCertificateByAttributes($year, $number, $pin)
+    {
+        /**
+         * @var \Doctrine\ORM\EntityRepository $certificateRepository
+         */
+        $certificateRepository =
+            $this->getDoctrine()
+                ->getManager()
+                ->getRepository('IktoTpEmuStorageBundle:Certificate');
+
+        return $certificateRepository->findOneBy(array(
+            'year' => $year,
+            'number' => $number,
+            'pin' => $pin,
+        ));
     }
 }
