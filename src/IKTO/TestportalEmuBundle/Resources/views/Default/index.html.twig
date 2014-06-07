@@ -1,0 +1,19 @@
+{% extends "IktoTestportalEmuBundle::layout.html.twig" %}
+
+{% block content %}
+    <h2>Перевірка відповідності даних сертифікату</h2>
+    <form method="POST" action="" id="checkCert">
+      <label for="certYear">Рік проходження</label>
+      <select id="certYear" name="CertYear" class="">
+              {% for y in 2013..2008 %}
+              <option value="{{ y }}"{% if (year is defined) and (y == year) %} selected="selected"{% endif %}>{{ y }}</option>
+              {% endfor %}
+      </select><br>
+      <label for="CertNum">Номер сертифіката</label>
+      <input id="CertNum" name="CertNum" class="text {% if number_error is defined %}rect_err{% endif %}" maxlength="7" autocomplete="off"{% if number is defined %} value="{{ number }}"{% endif %} type="text"><br>
+      <label for="CertPIN">ПІН-код</label>
+      <input id="CertPIN" name="CertPIN" class="text {% if pin_error is defined %}rect_err{% endif %}" maxlength="4" autocomplete="off" type="text"><br>
+      <input value="Знайти" class="btn" type="submit">
+      <div class="error">{% if (number_error is defined) or (pin_error is defined) %}Одне або більше полів не заповнені або заповнені невірно!{% elseif not_found is defined %}Не знайдено жодного запису з такими даними!{% endif %}</div>
+    </form>
+{% endblock content %}

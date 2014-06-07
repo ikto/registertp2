@@ -1,0 +1,44 @@
+{% extends "IktoTestportalEmuBundle::layout.html.twig" %}
+
+{% block content %}
+<h2>{{ certificate.name }}</h2>
+        <div class="center">брав(ла) участь у тестуванні <span class="blue bold f16">{{ certificate.year }}</span> року</div><br>
+    <div class="center">Сертифікат № <span class="blue bold f20">{{ certificate.number }}</span></div>
+    <br>
+    <table id="data_cert">
+        <tbody><tr>
+            <th width="200">Предмети</th>
+            <th width="200">Оцінка за шкалою<br>100 – 200 балів</th>
+        </tr>
+        {% if certificate.subject1 is not null %}
+        <tr>
+            <td width="200">{{ certificate.subject1.name }}</td>
+            <td class="blue center bold" width="200">{{ '%.1f'|format(certificate.value1) }}</td>
+        </tr>
+        {% endif %}
+        {% if certificate.subject2 is not null %}
+        <tr>
+            <td width="200">{{ certificate.subject2.name }}</td>
+            <td class="blue center bold" width="200">{{ '%.1f'|format(certificate.value2) }}</td>
+        </tr>
+        {% endif %}
+        {% if certificate.subject3 is not null %}
+        <tr>
+            <td width="200">{{ certificate.subject3.name }}</td>
+            <td class="blue center bold" width="200">{{ '%.1f'|format(certificate.value3) }}</td>
+        </tr>
+        {% endif %}
+        {% if certificate.subject4 is not null %}
+        <tr>
+            <td width="200">{{ certificate.subject4.name }}</td>
+            <td class="blue center bold" width="200">{{ '%.1f'|format(certificate.value4) }}</td>
+        </tr>
+        {% endif %}
+        {% if certificate.subject5 is not null %}
+        <tr>
+            <td width="200">{{ certificate.subject5.name }}</td>
+            <td class="blue center bold" width="200">{{ '%.1f'|format(certificate.value5) }}</td>
+        </tr>
+        {% endif %}
+        </tbody></table><br>
+    <div class="center"><a href="{{ path('ikto_testportal_emu_main') }}" class="backward">Повернутися</a></div>{% endblock content %}

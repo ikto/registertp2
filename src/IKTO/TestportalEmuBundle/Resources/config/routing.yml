@@ -1,0 +1,11 @@
+ikto_testportal_emu_main:
+    path: /
+    defaults:
+        _controller: IktoTestportalEmuBundle:Default:index
+    methods: [ GET ]
+
+ikto_testportal_emu_check:
+    path: /
+    defaults:
+        _controller: IktoTestportalEmuBundle:Default:check
+    methods: [ POST ]
