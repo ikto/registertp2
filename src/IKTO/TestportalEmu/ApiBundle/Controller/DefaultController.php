@@ -10,44 +10,52 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $year = $request->get('Year');
+        $year = $request->get('CertYear');
         $number = $request->get('CertNum');
-        $pin = $request->get('PIN');
+        while (strlen($number) < 7) {
+            $number = '0' . $number;
+        }
+        $pin = $request->get('CertPIN');
 
         $response = null;
 
-        if (!$year || !$number || !$pin) {
-            $response = 'ERROR: variables not found ';
-        } else {
-            $certificate = $this->getCertificateByAttributes($year, $number, $pin);
+        $res = array($year, $number, $pin);
 
-            if (!$certificate) {
-                $response = "ERROR: record not found (Year=$year, CertNum=$number, PIN=$pin)";
-            } else {
-                $res = array(
-                    $certificate->getYear(),
-                    $certificate->getName(),
-                    $certificate->getNumber(),
-                    $certificate->getPin(),
-                    $certificate->getSubject1() ? $certificate->getSubject1()->getId() : '',
-                    sprintf('%.1f', $certificate->getValue1()),
-                    $certificate->getSubject2() ? $certificate->getSubject2()->getId() : '',
-                    sprintf('%.1f', $certificate->getValue2()),
-                    $certificate->getSubject3() ? $certificate->getSubject3()->getId() : '',
-                    sprintf('%.1f', $certificate->getValue3()),
-                    $certificate->getSubject4() ? $certificate->getSubject4()->getId() : '',
-                    sprintf('%.1f', $certificate->getValue4()),
-                    $certificate->getSubject5() ? $certificate->getSubject5()->getId() : '',
-                    sprintf('%.1f', $certificate->getValue5()),
-                );
-                $res = array_map(function($val) { return $val . ';'; }, $res);
+        $certificate = $this->getCertificateByAttributes($year, $number, $pin);
 
-                $response = iconv('UTF-8', 'WINDOWS-1251', implode('', $res));
+        if ($certificate) {
+            array_push($res, $certificate->getName());
+
+            if ($certificate->getSubject1()) {
+                array_push($res, $certificate->getSubject1()->getName());
+                array_push($res, sprintf('%.1f', $certificate->getValue1()));
             }
+
+            if ($certificate->getSubject2()) {
+                array_push($res, $certificate->getSubject2()->getName());
+                array_push($res, sprintf('%.1f', $certificate->getValue2()));
+            }
+
+            if ($certificate->getSubject3()) {
+                array_push($res, $certificate->getSubject3()->getName());
+                array_push($res, sprintf('%.1f', $certificate->getValue3()));
+            }
+
+            if ($certificate->getSubject4()) {
+                array_push($res, $certificate->getSubject4()->getName());
+                array_push($res, sprintf('%.1f', $certificate->getValue4()));
+            }
+
+            if ($certificate->getSubject5()) {
+                array_push($res, $certificate->getSubject5()->getName());
+                array_push($res, sprintf('%.1f', $certificate->getValue5()));
+            }
+        } else {
+            array_push($res, '<не знайдено>');
         }
 
-        return new Response($response, 200, array(
-            'Content-type' => 'text/html; charset=WINDOWS-1251',
+        return new Response(implode('$$', $res), 200, array(
+            'Content-type' => 'text/html; charset=utf-8',
         ));
     }
 
