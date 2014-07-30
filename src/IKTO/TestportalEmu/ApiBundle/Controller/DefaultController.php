@@ -19,7 +19,7 @@ class DefaultController extends Controller
 
         $response = null;
 
-        $res = array($year, $number, $pin);
+        $res = array();
 
         $certificate = $this->getCertificateByAttributes($year, $number, $pin);
 
