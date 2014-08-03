@@ -10,10 +10,18 @@
               {% endfor %}
       </select><br>
       <label for="CertNum">Номер сертифіката</label>
-      <input id="CertNum" name="CertNum" class="text {% if number_error is defined %}rect_err{% endif %}" maxlength="7" autocomplete="off"{% if number is defined %} value="{{ number }}"{% endif %} type="text"><br>
+      <input id="CertNum" name="CertNum" type="text" class="text {% if number_error is defined %}rect_err{% endif %}" maxlength=7 autocomplete="off" value="{% if number is defined %}{{ number }}{% endif %}"><br>
       <label for="CertPIN">ПІН-код</label>
-      <input id="CertPIN" name="CertPIN" class="text {% if pin_error is defined %}rect_err{% endif %}" maxlength="4" autocomplete="off" type="text"><br>
+      <input id="CertPIN" name="CertPIN" type="text" class="text {% if pin_error is defined %}rect_err{% endif %}" maxlength=4 autocomplete="off"><br>
       <input value="Знайти" class="btn" type="submit">
       <div class="error">{% if (number_error is defined) or (pin_error is defined) %}Одне або більше полів не заповнені або заповнені невірно!{% elseif not_found is defined %}Не знайдено жодного запису з такими даними!{% endif %}</div>
+    </form>
+
+    <h2>Перевірка факту проходження особою тестування</h2>
+    <form method="POST" action="" id="checkFIO">
+        <label for="certFIO">Прізвище, ім'я, по батькові</label><br>
+        <input id="certFIO" name="CertFIO" type="text" class="text {% if name_error is defined %}rect_err{% endif %}" autocomplete="off" value="{% if name is defined %}{{ name }}{% endif %}"><br>
+        <input type="submit" value="Знайти" class="btn">
+        <div class="error">{% if name_error is defined %}Поле не заповнено або заповнено невірно!{% elseif not_found_by_name is defined %}Не знайдено жодного запису з такими даними!{% endif %}</div>
     </form>
 {% endblock content %}

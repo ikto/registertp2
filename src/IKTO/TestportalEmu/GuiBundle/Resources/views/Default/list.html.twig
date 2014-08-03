@@ -1,0 +1,21 @@
+{% extends "IktoTpEmuGuiBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="center">Прізвище, ім'я, по батькові</div>
+    <h2>{{ name }}</h2>
+{% for year in years %}
+    <div class="f16 center">Абітурієнти, що проходили тестування у <span class="blue bold f20">{{ year }}</span> р.</div>
+    <table id="data_fio">
+        <tbody><tr>
+            <th width="100">Номер сертифіката</th>
+            <th width="200">Назви предметів, з яких проходив(ла) тестування</th>
+        </tr>
+        {% for certificate in collections[year] %}<tr>
+            <td class="center f16" width="100">{{ certificate.number }}</td>
+            <td width="200">{{ certificate.subjectnames | join("\n") | nl2br }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+{% endblock content %}

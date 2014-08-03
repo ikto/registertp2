@@ -374,4 +374,30 @@ class Certificate
     {
         return $this->value5;
     }
+
+    /**
+     * @return string[]
+     */
+    public function getSubjectNames()
+    {
+        $names = array();
+
+        if ($this->getSubject1() instanceof Subject) {
+            $names[] = $this->getSubject1()->getName();
+        }
+        if ($this->getSubject2() instanceof Subject) {
+            $names[] = $this->getSubject2()->getName();
+        }
+        if ($this->getSubject3() instanceof Subject) {
+            $names[] = $this->getSubject3()->getName();
+        }
+        if ($this->getSubject4() instanceof Subject) {
+            $names[] = $this->getSubject4()->getName();
+        }
+        if ($this->getSubject5() instanceof Subject) {
+            $names[] = $this->getSubject5()->getName();
+        }
+
+        return $names;
+    }
 }
