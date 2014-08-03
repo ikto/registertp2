@@ -9,7 +9,7 @@ use IKTO\TestportalEmu\StorageBundle\Entity\Subject;
  * Class Certificate
  * @package IKTO\TestportalEmu\StorageBundle\Entity
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="IKTO\TestportalEmu\StorageBundle\Entity\CertificateRepository")
  * @ORM\Table(name="data")
  */
 class Certificate
