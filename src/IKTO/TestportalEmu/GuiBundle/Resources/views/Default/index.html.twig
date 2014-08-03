@@ -5,7 +5,7 @@
     <form method="POST" action="" id="checkCert">
       <label for="certYear">Рік проходження</label>
       <select id="certYear" name="CertYear" class="">
-              {% for y in 2013..2008 %}
+              {% for y in 2014..2008 %}
               <option value="{{ y }}"{% if (year is defined) and (y == year) %} selected="selected"{% endif %}>{{ y }}</option>
               {% endfor %}
       </select><br>
